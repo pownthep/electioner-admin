@@ -1,0 +1,78 @@
+<h1>System settings</h1>
+<div class="container">
+  <section id="section01">
+    <div class="example-container">
+      <form #settingForm="ngForm" (ngSubmit)="onSubmit()" class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+          
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key1FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key1FormControl.hasError('key') && !key1FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key1FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key2FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key2FormControl.hasError('key') && !key2FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key2FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key3FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key3FormControl.hasError('key') && !key3FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key3FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key4FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key4FormControl.hasError('key') && !key4FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key4FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key5FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key5FormControl.hasError('key') && !key5FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key5FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Encryption key" [formControl]="key6FormControl"
+                 [errorStateMatcher]="matcher" required></textarea>
+          <mat-error *ngIf="key6FormControl.hasError('key') && !key6FormControl.hasError('required')">
+            Please enter an encryption key
+          </mat-error>
+          <mat-error *ngIf="key6FormControl.hasError('required')">
+            Encryption key is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-stroked-button color="primary" [disabled]="settingForm.form.invalid" type="submit">Submit</button>
+      </form>
+    </div>    
+  </section>
+  <section id="section02">
+  </section>
+</div>

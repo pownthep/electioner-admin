@@ -1,0 +1,20 @@
+<div *ngIf="items$">
+  <div *ngIf="items$; else elseBlock">
+        <div *ngFor= "let item of items$">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    Publisher: {{item.publishers}}
+                </mat-expansion-panel-header>
+              
+                <ng-template matExpansionPanelContent>
+                    <li> <strong>Key: </strong> {{item.key}}</li>
+                    <li> <strong>Data:  </strong><i class="material-icons">lock</i></li>
+                    <li> <strong>Confirmations: </strong> {{item.confirmations}}</li>
+                    <li> <strong>Blocktime: </strong> {{item.blocktime}}</li>
+                    <li> <strong>Transaction ID:  </strong> {{item.txid}}</li>
+                </ng-template>
+              </mat-expansion-panel>
+        </div>
+  </div>
+  <ng-template #elseBlock> <strong>No items</strong> </ng-template>
+</div>

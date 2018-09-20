@@ -1,0 +1,43 @@
+<div id="add-party">
+  <div class="container">
+    <app-party></app-party>
+  </div>
+  <div class="container">
+    <form #partyForm="ngForm" (ngSubmit)="onSubmit()" class="center">
+      <h1>Add a party</h1><br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Party name" [formControl]="partynameFormControl"
+                [errorStateMatcher]="matcher" [(ngModel)] = "partyModel.party_name" required>
+        <mat-error *ngIf="partynameFormControl.hasError('key') && !partynameFormControl.hasError('required')">
+          Please enter a party name
+        </mat-error>
+        <mat-error *ngIf="partynameFormControl.hasError('required')">
+          Party name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Area code" [formControl]="areacodeFormControl"
+                [errorStateMatcher]="matcher" [(ngModel)] = "partyModel.code"  required>
+        <mat-error *ngIf="areacodeFormControl.hasError('key') && !areacodeFormControl.hasError('required')">
+          Please enter an area code
+        </mat-error>
+        <mat-error *ngIf="areacodeFormControl.hasError('required')">
+          Area code is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Image url" [formControl]="imageFormControl"
+                [errorStateMatcher]="matcher" [(ngModel)] = "partyModel.image_url" required>
+        <mat-error *ngIf="imageFormControl.hasError('key') && !imageFormControl.hasError('required')">
+          Please enter an image link
+        </mat-error>
+        <mat-error *ngIf="imageFormControl.hasError('required')">
+          Please provide a link for your party logo
+        </mat-error>
+      </mat-form-field>
+      <button mat-stroked-button color="primary" [disabled]="partyForm.form.invalid" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

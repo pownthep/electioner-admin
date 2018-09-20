@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+$font: 'Kanit', sans-serif;
+$red: black;
+$blue: black;
+$green: rgb(27, 94, 27);
+html {
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    font-family: $font;
+    height: 100%;
+    width: 100%;
+    background:black;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+h1{
+    color:black;
+    opacity: 1.0;
+}
+
+#container {
+    min-height: 100%;
+   #content {
+       display: grid;
+       grid-template-columns: 175px auto;
+       min-height: 100vh;
+       border-radius: 8px;
+
+       #sidebar{
+           box-shadow: 1px 0px 2px 1px rgba($color: #000000, $alpha: 0.4);
+       }
+
+       #router-content{
+        background: #fff;
+        opacity: 1.0;
+        padding-left: 50px;
+
+        ul{
+            margin: 0;
+        }
+       }
+   }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.ng-tns-c4-2{
+    margin-left: 0;
+}

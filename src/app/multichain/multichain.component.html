@@ -1,0 +1,8 @@
+<div *ngIf="chaininfo$">
+  <h1>{{chaininfo$.chainname}}</h1>
+  <ul>
+    <li><strong>Port:</strong> {{chaininfo$.port}}</li>
+    <li><strong>Connections:</strong> {{chaininfo$.connections}}</li>
+    <li><strong>Errors:</strong> {{chaininfo$.errors}}</li>
+  </ul>
+</div>

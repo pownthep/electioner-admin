@@ -1,0 +1,14 @@
+<div id="rep-content">
+  <h1>List of representatives</h1>
+    <div *ngFor= "let rep of reps$" [@listStagger]="reps$">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              {{rep.fname}} {{rep.lname}}
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <p>{{rep.party}}</p>
+            <p>{{rep.area}}</p>
+          </ng-template>
+      </mat-expansion-panel>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<nav>
+  <ul>
+    <li>
+      <a routerLink="" id="logo">
+        <img src="./favicon.ico" alt="">
+      </a>
+    </li>
+    <li>
+      <a routerLink="" [class.activated]="currentUrl == '/'">
+        Dashboard
+      </a>
+    </li>
+    <li>
+      <a routerLink="add" [class.activated]="currentUrl == '/add'">
+        Add party
+      </a>
+    </li>
+    <li>
+      <a routerLink="add-rep" [class.activated]="currentUrl == '/add-rep'">
+        Add representative
+      </a>
+    </li>
+    <li>
+      <a routerLink="config" [class.activated]="currentUrl == '/config'">
+        Configuration
+      </a>
+    </li>
+    <li>
+      <a routerLink="decrypt" [class.activated]="currentUrl == '/decrypt'">
+        Decrypt
+      </a>
+    </li>
+    <li>
+      <a routerLink="stream" [class.activated]="currentUrl == '/stream'">
+        Streams
+      </a>
+    </li>
+    
+  </ul>
+</nav>
