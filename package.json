@@ -26,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@types/chart.js": "^2.7.35",
+    "amazing-time-picker": "^1.5.3",
     "angular-bootstrap-md": "^6.2.3",
     "angular5-csv": "^0.2.10",
     "buffer": "^5.2.1",

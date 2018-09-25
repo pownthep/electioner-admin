@@ -1,0 +1,9 @@
+.container{
+    display: grid;
+    grid-template-rows: 30% auto;
+    img{
+        width: 965px;
+        height: 258px;
+        margin: 50px;
+    }
+}
