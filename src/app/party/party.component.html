@@ -1,14 +1,31 @@
-<div id="party-content">
-    <h1>Party list</h1>
-        <div *ngFor= "let party of parties$" [@listStagger]="parties$">
-            <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                        {{party.name}}
-                </mat-expansion-panel-header>
-                <ng-template matExpansionPanelContent>
-                    <li>{{party.code}}</li>
-                    <li><a>{{party.url}}</a></li>
-                </ng-template>
-            </mat-expansion-panel>
-        </div>
-</div>
+<mat-form-field appearance="outline" class="animated zoomIn">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+  
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 animated zoomIn">
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Code </th>
+        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+        <th mat-header-cell *matHeaderCellDef> URL </th>
+        <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

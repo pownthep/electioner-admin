@@ -1,0 +1,50 @@
+table {
+    width: 100%;
+    border-radius: 10px;
+    th{
+        color: rgb(255, 255, 255);
+        background-color: #3F51B5;
+    }
+    i{
+        margin-left: 40px;
+    }
+}
+#deleteIcon:hover{
+    color: red;
+}
+#editIcon:hover{
+    color: rgb(34, 62, 184);
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.delete{
+    color: red;
+}
+.edit{
+    color: #3F51B5;
+}
+.hidden{
+    display: none;
+}
+
+.modal-notify .modal-header {
+    border-radius: 3px 3px 0 0;
+}
+.modal-notify .modal-content {
+    border-radius: 3px;
+}
+
+.modal-dialog.modal-notify.modal-warning .modal-header{
+    background: #3F51B5;
+}
+.btn-outline-warning {
+    border: 2px solid #3F51B5 !important;
+    background-color: transparent !important;
+    color: #000000 !important;
+}
+table.mat-table{
+    border-radius: 5px;
+}

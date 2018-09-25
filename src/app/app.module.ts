@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {ReactiveFormsModule} from '@angular/forms';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +20,6 @@ import { PartyComponent } from './party/party.component';
 import { DataService } from './data.service';
 import { MultichainComponent } from './multichain/multichain.component';
 import { DecryptComponent } from './decrypt/decrypt.component';
-import { RsaService } from './rsa.service';
 import { ListitemsComponent } from './listitems/listitems.component';
 import { ListstreamsComponent } from './liststreams/liststreams.component';
 import {
@@ -79,7 +79,7 @@ import { AddRepComponent } from './add-rep/add-rep.component';
     ListstreamsComponent,
     DashboardComponent,
     RepsComponent,
-    AddRepComponent,
+    AddRepComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +128,8 @@ import { AddRepComponent } from './add-rep/add-rep.component';
     MatTooltipModule,
     MatTreeModule,
     MatFormFieldModule,
-    LayoutModule
+    LayoutModule,
+    MDBBootstrapModule.forRoot()
   ],
   exports: [
     CdkTableModule,
@@ -169,7 +170,8 @@ import { AddRepComponent } from './add-rep/add-rep.component';
     MatTooltipModule,
     MatTreeModule,
   ],
-  providers: [DataService, RsaService],
-  bootstrap: [AppComponent]
+  providers: [DataService],
+  bootstrap: [AppComponent],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }

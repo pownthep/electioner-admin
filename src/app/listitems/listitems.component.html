@@ -3,15 +3,15 @@
         <div *ngFor= "let item of items$">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
-                    Publisher: {{item.publishers}}
+                    <strong>Publisher: </strong>{{item.publishers}}
                 </mat-expansion-panel-header>
               
                 <ng-template matExpansionPanelContent>
-                    <li> <strong>Key: </strong> {{item.key}}</li>
-                    <li> <strong>Data:  </strong><i class="material-icons">lock</i></li>
-                    <li> <strong>Confirmations: </strong> {{item.confirmations}}</li>
-                    <li> <strong>Blocktime: </strong> {{item.blocktime}}</li>
-                    <li> <strong>Transaction ID:  </strong> {{item.txid}}</li>
+                    <p> <strong>Key: </strong> {{item.key}}</p>
+                    <p> <strong>Data:  </strong>{{item.data}}</p>
+                    <p> <strong>Confirmations: </strong> {{item.confirmations}}</p>
+                    <p> <strong>Blocktime: </strong> {{item.blocktime}}</p>
+                    <p> <strong>Transaction ID:  </strong> {{item.txid}}</p>
                 </ng-template>
               </mat-expansion-panel>
         </div>

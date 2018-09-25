@@ -1,6 +1,5 @@
 <div class="test">
     <div>
-      <h1>Streams list</h1>
       <mat-tab-group>
         <mat-tab *ngFor= "let stream of streamlist$" label="{{stream.name}}"> 
           <app-listitems [stream]="stream.name"></app-listitems>

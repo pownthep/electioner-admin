@@ -42,7 +42,6 @@ export class ListitemsComponent implements OnInit {
     this.data.getStreamItems(this.stream).subscribe(
       data => this.items$ = data
     );
-    console.log(this.stream);
   }
 
 }

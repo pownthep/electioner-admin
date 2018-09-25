@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Party } from '../party';
 import { DataService } from '../data.service';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {MatSnackBar} from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,26 +20,27 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddComponent implements OnInit {
   
-  partynameFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  areacodeFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  imageFormControl = new FormControl('', [
-    Validators.required
-  ]);
-  
   partyModel = new Party("", "", "");
   matcher = new MyErrorStateMatcher();
-  constructor(private data: DataService) { }
-
+  constructor(private data: DataService, private _formBuilder: FormBuilder) { }
+  partyFormGroup: FormGroup;
+  
   ngOnInit() {
+    this.partyFormGroup = this._formBuilder.group({
+      nameCtrl: ['', Validators.required],
+      areaCtrl: ['', Validators.required],
+      imageCtrl: ['', Validators.required]
+    });
   }
-  onSubmit() {
+  onSubmit(f:any) {
+    console.log(f);
+    this.partyModel.party_name = f.value.nameCtrl;
+    this.partyModel.code = f.value.areaCtrl;
+    this.partyModel.image_url = f.value.imageCtrl;
+
     this.data.registerParty(this.partyModel).subscribe(
-      data => console.log("Success"),
+      data => console.log("success"),
       err => console.log(err)
-    )
+    );
   }
 }

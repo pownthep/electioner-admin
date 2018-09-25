@@ -1,83 +1,76 @@
 <div id="add-rep">
-    <div class="container">
-      <app-reps></app-reps>
-    </div>
-    <div class="container">
-      <form #repForm="ngForm" (ngSubmit)="onSubmit()" class="center">
-        <h1>Add a representative</h1><br>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="First name" [formControl]="fnameFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.fname" required>
-          <mat-error *ngIf="fnameFormControl.hasError('required')">
-            Firstname is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Lastname" [formControl]="lnameFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.lname" required>
-          <mat-error *ngIf="lnameFormControl.hasError('required')">
-           Lastname is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Party" [formControl]="partyFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.party" required>
-          <mat-error *ngIf="partyFormControl.hasError('required')">
-            Party is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Area code" [formControl]="codeFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.code" required>
-          <mat-error *ngIf="codeFormControl.hasError('required')">
-            Area code is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Province" [formControl]="provinceFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.province" required>
-          <mat-error *ngIf="provinceFormControl.hasError('required')">
-            Province is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="District" [formControl]="districtFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.district" required>
-          <mat-error *ngIf="districtFormControl.hasError('required')">
-            District is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Sub-district" [formControl]="sdistrictFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.sub_district" required>
-          <mat-error *ngIf="sdistrictFormControl.hasError('required')">
-            Sub-district is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Profile image" [formControl]="pimageFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.image_url2" required>
-          <mat-error *ngIf="pimageFormControl.hasError('required')">
-            Profile image is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Public key" [formControl]="keyFormControl"
-                  [errorStateMatcher]="matcher" [(ngModel)] = "repModel.pub_key" required>
-          <mat-error *ngIf="keyFormControl.hasError('required')">
-            Public key is <strong>required for encryption purposes</strong>
-          </mat-error>
-        </mat-form-field>
-        <button mat-stroked-button color="primary" [disabled]="repForm.form.invalid" type="submit">Submit</button>
-      </form>
-    </div>
+  <div class="container animated zoomIn">
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
+          <ng-template matStepLabel>Fill out your name</ng-template>
+          <mat-form-field appearance="outline">
+            <mat-label>First name</mat-label>
+            <input matInput placeholder="First name" formControlName="fnameCtrl" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last name" formControlName="lnameCtrl" required>
+          </mat-form-field>
+          <div class="button">
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup" #f2="ngForm" (ngSubmit)="onSubmit2(f2)">
+          <ng-template matStepLabel>Fill out your details</ng-template>
+          <mat-form-field appearance="outline">
+            <mat-label>Number</mat-label>
+            <input matInput placeholder="Number" formControlName="numberCtrl" type="number" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Party</mat-label>
+            <input matInput placeholder="Party" formControlName="partyCtrl" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Area</mat-label>
+            <input matInput placeholder="Area" formControlName="areaCtrl" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Province</mat-label>
+            <input matInput placeholder="Province" formControlName="provinceCtrl" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>District</mat-label>
+            <input matInput placeholder="District" formControlName="districtCtrl" required>
+          </mat-form-field>
+          
+          <div class="button">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup" #f3="ngForm" (ngSubmit)="onSubmit3(f3)">
+          <ng-template matStepLabel>Upload your profile photo</ng-template>
+          <mat-form-field appearance="outline">
+            <mat-label>Upload</mat-label>
+            <input matInput placeholder="Upload a file" formControlName="uploadCtrl" required>
+          </mat-form-field>
+          <div class="button">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done.
+        <div class="button">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
   </div>
-  
+  <div class="container">
+    <app-reps></app-reps>
+  </div>
+</div>

@@ -46,4 +46,17 @@ export class DataService {
   registerRep(rep: Representative) {
     return this.http.post<Representative>('https://localhost/api/add_rep', rep); 
   }
+
+  deleteRep(id: string) {
+    return this.http.delete('https://localhost/api/rep/'+id); 
+  }
+
+  getRep(id: string) {
+    return this.http.get('https://localhost/api/rep/'+id); 
+  }
+
+  updateRep(id: string, rep: Representative) {
+    return this.http.post('https://localhost/api/rep/edit/'+id, rep); 
+  }
+
 }

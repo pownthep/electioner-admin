@@ -21,9 +21,10 @@ const routes: Routes = [
   {path: 'multichain', component: MultichainComponent},
   {path: 'decrypt', component: DecryptComponent},
   {path: 'stream', component: ListstreamsComponent},
-  {path: '', component: DashboardComponent},
+  {path: 'dashboard', component: DashboardComponent},
   {path: 'add-rep', component: AddRepComponent},
   {path: 'listitems', component: ListitemsComponent}
+
 ];
 
 @NgModule({

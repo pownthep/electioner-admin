@@ -1,17 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-$font: 'Kanit', sans-serif;
-$red: black;
-$blue: black;
-$green: rgb(27, 94, 27);
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+$font: 'Roboto', sans-serif;
 html {
     overflow-x: hidden;
 }
 body {
     margin: 0;
-    font-family: $font;
     height: 100%;
     width: 100%;
-    background:black;
     position: absolute;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,38 +16,24 @@ body {
     z-index: -1;
 }
 
-h1{
-    color:black;
-    opacity: 1.0;
+p{
+    word-break: break-all;
 }
 
-#container {
-    min-height: 100%;
-   #content {
-       display: grid;
-       grid-template-columns: 175px auto;
-       min-height: 100vh;
-       border-radius: 8px;
-
-       #sidebar{
-           box-shadow: 1px 0px 2px 1px rgba($color: #000000, $alpha: 0.4);
-       }
-
-       #router-content{
-        background: #fff;
-        opacity: 1.0;
-        padding-left: 50px;
-
-        ul{
-            margin: 0;
-        }
-       }
-   }
+mat-tab-body{
+    padding: 20px;
+    height: 100vh;
+    overflow: auto;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
-
-.ng-tns-c4-2{
-    margin-left: 0;
+mat-tab-header{
+    color: white;
+    background: rgba(3, 169, 244, 0.1) ;
+    border:none;
+}
+footer.page-footer .footer-copyright{
+    background: #3F51B5;
+    color: white;
+    a{
+        color: white;
+    }
 }
