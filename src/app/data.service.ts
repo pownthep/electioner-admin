@@ -8,55 +8,60 @@ import { Representative } from './representative';
   providedIn: 'root'
 })
 export class DataService {
+  private baseUrl = "https://35.186.153.108";
 
   constructor(private http: HttpClient) { }
-
   getReps() {
-    return this.http.get('https://localhost/api/rep');
+    return this.http.get(this.baseUrl+'/api/rep');
   }
   
   getParties() {
-    return this.http.get('https://localhost/api/party');
-  }
-
-  getUser(userId) {
-    return this.http.get('https://jsonplaceholder.typicode.com/users/' + userId);
-  }
-
-  getPosts() {
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+    return this.http.get(this.baseUrl+'/api/party');
   }
 
   getChainInfo() {
-    return this.http.get('https://localhost/multichain/multichain');
+    return this.http.get(this.baseUrl+'/multichain/multichain');
   }
 
   getStreamItems(name: string) {
-    return this.http.get('https://localhost/multichain/liststreamitems/' + name);
+    return this.http.get(this.baseUrl+'/multichain/liststreamitems/' + name);
   }
 
   getStreamList() {
-    return this.http.get('https://localhost/multichain/liststreams');
+    return this.http.get(this.baseUrl+'/multichain/liststreams');
   }
 
   registerParty(party: Party) {
-    return this.http.post<Party>('https://localhost/api/add_party', party); 
+    return this.http.post<Party>(this.baseUrl+'/api/add_party', party); 
   }
 
   registerRep(rep: Representative) {
-    return this.http.post<Representative>('https://localhost/api/add_rep', rep); 
+    return this.http.post<Representative>(this.baseUrl+'/api/add_rep', rep); 
   }
 
   deleteRep(id: string) {
-    return this.http.delete('https://localhost/api/rep/'+id); 
+    return this.http.delete(this.baseUrl+'/api/rep/'+id); 
+  }
+
+  deleteParty(id: string) {
+    return this.http.delete(this.baseUrl+'/api/party/'+id); 
   }
 
   getRep(id: string) {
-    return this.http.get('https://localhost/api/rep/'+id); 
+    return this.http.get(this.baseUrl+'/api/rep/'+id); 
   }
 
   updateRep(id: string, rep: Representative) {
-    return this.http.post('https://localhost/api/rep/edit/'+id, rep); 
+    return this.http.post(this.baseUrl+'/api/rep/edit/'+id, rep); 
   }
+
+  getParty(id: string) {
+    return this.http.get(this.baseUrl+'/api/party/'+id); 
+  }
+
+  updateParty(id: string, party: Party) {
+    return this.http.post(this.baseUrl+'/api/party/edit/'+id, party); 
+  }
+
 
 }

@@ -3,7 +3,8 @@ import { Party } from '../party';
 import { DataService } from '../data.service';
 import {FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar, MatTableDataSource} from '@angular/material';
+import { slideInRight, fade } from '../animations/animation';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -16,7 +17,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  styleUrls: ['./add.component.scss'],
+  animations:[
+    fade
+  ]
 })
 export class AddComponent implements OnInit {
   
@@ -25,7 +29,13 @@ export class AddComponent implements OnInit {
   constructor(private data: DataService, private _formBuilder: FormBuilder) { }
   partyFormGroup: FormGroup;
   
+  partyList:any;
+
   ngOnInit() {
+    this.data.getParties().subscribe(
+      data => this.partyList = new MatTableDataSource(data as {}[])
+    );
+
     this.partyFormGroup = this._formBuilder.group({
       nameCtrl: ['', Validators.required],
       areaCtrl: ['', Validators.required],
@@ -39,7 +49,9 @@ export class AddComponent implements OnInit {
     this.partyModel.image_url = f.value.imageCtrl;
 
     this.data.registerParty(this.partyModel).subscribe(
-      data => console.log("success"),
+      data => this.data.getParties().subscribe(
+        data => this.partyList = new MatTableDataSource(data as {}[])
+      ),
       err => console.log(err)
     );
   }

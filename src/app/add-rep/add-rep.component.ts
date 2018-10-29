@@ -1,41 +1,47 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Representative } from '../representative';
-import { RepsComponent } from '../reps/reps.component';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { MatPaginator,MatTableDataSource } from '@angular/material';
+import { fade } from '../animations/animation';
 
 @Component({
   selector: 'app-add-rep',
   templateUrl: './add-rep.component.html',
-  styleUrls: ['./add-rep.component.scss']
+  styleUrls: ['./add-rep.component.scss'],
+  animations:[
+    fade
+  ]
 })
 export class AddRepComponent implements OnInit {
+  //Representative model
+  public repModel = new Representative("","",0, 0,"","","","","");
 
-  @ViewChild(RepsComponent)
-  public repComponent: RepsComponent;
-
-  public repModel = new Representative("","",0,"","","","","");
-  matcher = new MyErrorStateMatcher();
   constructor(private data: DataService,private _formBuilder: FormBuilder) { }
-  isLinear = true;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  //Validation and error checking
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  ngOnInit() {
 
+  //Passing representatives to RepsComponent
+  public representativeList:MatTableDataSource<any>;
+
+  ngOnInit() {
+    this.data.getReps().subscribe(
+      data => {
+        this.representativeList = new MatTableDataSource(data as {}[]);
+        this.representativeList.paginator = this.paginator;
+      }
+    );
+
+    //Validation and error checking
     this.firstFormGroup = this._formBuilder.group({
       fnameCtrl: ['', Validators.required],
-      lnameCtrl: ['', Validators.required]
+      lnameCtrl: ['', Validators.required],
+      ageCtrl: ['', Validators.required]
+
     });
     this.secondFormGroup = this._formBuilder.group({
       numberCtrl: ['', Validators.required],
@@ -47,10 +53,13 @@ export class AddRepComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       uploadCtrl: ['', Validators.required]
     });
+
+
   }
   onSubmit1(f: NgForm) {
     this.repModel.fname = f.value.fnameCtrl;
     this.repModel.lname = f.value.lnameCtrl;
+    this.repModel.age = f.value.ageCtrl;
   }
   onSubmit2(f: NgForm) {
     this.repModel.number = f.value.numberCtrl;
@@ -62,12 +71,11 @@ export class AddRepComponent implements OnInit {
   onSubmit3(f: NgForm) {
     this.repModel.image = f.value.uploadCtrl;
     this.data.registerRep(this.repModel).subscribe(
-      data => this.refresh(),
-      err => this.refresh()
+      data => this.data.getReps().subscribe(
+        data => this.representativeList = new MatTableDataSource(data as {}[])
+      ),
+      error => console.log(error)
     );
-  }
-  refresh() {
-    this.repComponent.reloadTable();
   }
 
 }

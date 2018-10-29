@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Edit</h1>
+<div mat-dialog-content>
+    <form [formGroup]="firstFormGroup" #edit="ngForm" (ngSubmit)="onSave(edit)" *ngIf="rep">
+
+        <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput placeholder="First name" formControlName="fnameCtrl"  value={{rep.fname}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Last name</mat-label>
+            <input matInput placeholder="Last name" formControlName="lnameCtrl"  value={{rep.lname}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Age</mat-label>
+            <input matInput placeholder="Age" formControlName="ageCtrl"  value={{rep.age}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Number</mat-label>
+            <input matInput placeholder="Number" formControlName="numberCtrl" type="number"  value={{rep.number}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Party</mat-label>
+            <input matInput placeholder="Party" formControlName="partyCtrl"  value={{rep.party}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Area</mat-label>
+            <input matInput placeholder="Area" formControlName="areaCtrl"  value={{rep.area}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Province</mat-label>
+            <input matInput placeholder="Province" formControlName="provinceCtrl"  value={{rep.province}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>District</mat-label>
+            <input matInput placeholder="District" formControlName="districtCtrl"  value={{rep.district}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Upload</mat-label>
+            <input matInput placeholder="Upload a file" formControlName="uploadCtrl"  value={{rep.image}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+        <div align="end">
+            <button mat-button [mat-dialog-close]>Cancel</button>
+            <button type="submit" mat-button>Save</button>
+        </div>
+    </form>
+</div>

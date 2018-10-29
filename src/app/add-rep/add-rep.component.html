@@ -1,6 +1,6 @@
-<div id="add-rep">
-  <div class="container animated zoomIn">
-    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+<div id="add-rep" @fade>
+  <div class="container">
+    <mat-horizontal-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
           <ng-template matStepLabel>Fill out your name</ng-template>
@@ -12,8 +12,12 @@
               <mat-label>Last name</mat-label>
             <input matInput placeholder="Last name" formControlName="lnameCtrl" required>
           </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Age</mat-label>
+            <input matInput placeholder="Age" type="number" formControlName="ageCtrl" required>
+          </mat-form-field>
           <div class="button">
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -42,21 +46,21 @@
           </mat-form-field>
           
           <div class="button">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button color="primary" matStepperPrevious>Back</button>
+            <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
       <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup" #f3="ngForm" (ngSubmit)="onSubmit3(f3)">
-          <ng-template matStepLabel>Upload your profile photo</ng-template>
+          <ng-template matStepLabel>Link to your profile photo</ng-template>
           <mat-form-field appearance="outline">
             <mat-label>Upload</mat-label>
             <input matInput placeholder="Upload a file" formControlName="uploadCtrl" required>
           </mat-form-field>
           <div class="button">
-            <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button mat-button color="primary" matStepperPrevious>Back</button>
+            <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
@@ -64,13 +68,13 @@
         <ng-template matStepLabel>Done</ng-template>
         You are now done.
         <div class="button">
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button color="primary" matStepperPrevious>Back</button>
+          <button mat-button color="primary" (click)="stepper.reset()">Reset</button>
         </div>
       </mat-step>
     </mat-horizontal-stepper>
   </div>
   <div class="container">
-    <app-reps></app-reps>
+    <app-reps [input]="representativeList"></app-reps>
   </div>
 </div>

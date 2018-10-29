@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Edit</h1>
+<div mat-dialog-content>
+    <form [formGroup]="modalFormGroup" #edit="ngForm" (ngSubmit)="onSave(edit)" *ngIf="party">
+        <mat-form-field appearance="fill">
+            <mat-label>Party name</mat-label>
+            <input matInput formControlName="pnameCtrl"  value={{party?.name}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Area</mat-label>
+            <input matInput formControlName="areaCtrl"  value={{party?.code}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Image link</mat-label>
+            <input matInput formControlName="imageCtrl" value={{party?.url}} [errorStateMatcher]="matcher" required>
+        </mat-form-field>
+        <div align="end">
+            <button mat-button [mat-dialog-close]>Cancel</button>
+            <button type="submit" mat-button>Save</button>
+        </div>
+    </form>
+</div>

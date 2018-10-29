@@ -1,10 +1,10 @@
-<mat-form-field appearance="outline" class="animated zoomIn">
+<mat-form-field appearance="outline">
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
 </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 animated zoomIn">
-
+<div class="mat-elevation-z0">
+<table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="number">
     <th mat-header-cell *matHeaderCellDef>No.</th>
     <td mat-cell *matCellDef="let element"> {{element.number}} </td>
@@ -18,6 +18,11 @@
   <ng-container matColumnDef="lname">
     <th mat-header-cell *matHeaderCellDef> Last name </th>
     <td mat-cell *matCellDef="let element"> {{element.lname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Age </th>
+    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
   </ng-container>
 
   <ng-container matColumnDef="party">
@@ -42,72 +47,16 @@
 
   <ng-container matColumnDef="_id">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" align="end">
         <strong class="hidden" #id>{{element._id}}</strong>
-        <i matTooltip="Edit a candidate" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" (click)="onEdit(id.innerText)" class="material-icons" id="editIcon">edit</i>
+        <i matTooltip="Edit a candidate" (click)="onEdit(id.innerText)" class="material-icons" id="editIcon">edit</i>
         <i matTooltip="Delete a candidate" class="material-icons" (click)="onDelete(id.innerText)" id="deleteIcon">delete</i>
     </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
 </table>
 
-<!-- Modal-->
-<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-notify modal-warning" role="document">
-    <!--Content-->
-    <div class="modal-content">
-      <!--Header-->
-      <div class="modal-header text-center">
-        <h4 class="modal-title white-text w-100 font-weight-bold py-2">Edit</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
-          <span aria-hidden="true" class="white-text">&times;</span>
-        </button>
-      </div>
-
-      <!--Body-->
-      <div class="modal-body">
-        <form [formGroup]="firstFormGroup" #f1="ngForm" (ngSubmit)="onSave(f1)" *ngIf="editData">
-          <mat-form-field appearance="outline">
-            <mat-label>First name</mat-label>
-            <input matInput placeholder="First name" formControlName="fnameCtrl"  value={{editData.fname}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Last name</mat-label>
-            <input matInput placeholder="Last name" formControlName="lnameCtrl"  value={{editData?.lname}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Number</mat-label>
-            <input matInput placeholder="Number" formControlName="numberCtrl" type="number"  value={{editData?.number}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Party</mat-label>
-            <input matInput placeholder="Party" formControlName="partyCtrl"  value={{editData?.party}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Area</mat-label>
-            <input matInput placeholder="Area" formControlName="areaCtrl"  value={{editData?.area}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Province</mat-label>
-            <input matInput placeholder="Province" formControlName="provinceCtrl"  value={{editData?.province}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>District</mat-label>
-            <input matInput placeholder="District" formControlName="districtCtrl"  value={{editData?.district}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Upload</mat-label>
-            <input matInput placeholder="Upload a file" formControlName="uploadCtrl"  value={{editData?.image}} [errorStateMatcher]="matcher" required>
-          </mat-form-field>
-          <div class="modal-footer justify-content-center">
-            <button type="submit" mdbBtn color="warning" outline="true" class="waves-effect" mdbWavesEffect>Save<i class="fa fa-paper-plane-o ml-1"></i></button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

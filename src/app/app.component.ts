@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
+import { fade } from './animations/animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    fade
+  ]
 })
 
 export class AppComponent {
   public navLinks: Object=[
     {
-      path:"config",
-      label: "DASHBOARD",
-      icon: "dashboard"
+      path:"add",
+      label: "REGISTER A PARTY",
+      icon: "flag"
     },
     {
       path:"add-rep",
@@ -19,16 +23,9 @@ export class AppComponent {
       icon: "person_add"
     },
     {
-      path:"add",
-      label: "REGISTER A PARTY",
-      icon: "flag"
-    },
-    {
-      path:"stream",
-      label: "STREAM",
-      icon: "view_stream"
+      path:"setting",
+      label: "SETTINGS",
+      icon: "settings"
     }
   ]
-  public test = "Hello world";
-  title = 'Electioner';
 }

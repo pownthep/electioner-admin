@@ -4,22 +4,13 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import {ReactiveFormsModule} from '@angular/forms';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { PostsComponent } from './posts/posts.component';
-import { DetailsComponent } from './details/details.component';
-
 import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddComponent } from './add/add.component';
-import { ConfigComponent } from './config/config.component';
-import { PartyComponent } from './party/party.component';
+import { PartyComponent, PartyEditForm } from './party/party.component';
 import { DataService } from './data.service';
-import { MultichainComponent } from './multichain/multichain.component';
-import { DecryptComponent } from './decrypt/decrypt.component';
 import { ListitemsComponent } from './listitems/listitems.component';
 import { ListstreamsComponent } from './liststreams/liststreams.component';
 import {
@@ -60,26 +51,26 @@ import {
   MatTreeModule,
   MatFormFieldModule
 } from '@angular/material';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { RepsComponent } from './reps/reps.component';
+import { RepsComponent, RepEditForm } from './reps/reps.component';
 import { AddRepComponent } from './add-rep/add-rep.component';
+import { SettingComponent } from './setting/setting.component';
+import { ThailandComponent } from './thailand/thailand.component';
+import { CreateUserComponent } from './create-user/create-user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    PostsComponent,
-    DetailsComponent,
     AddComponent,
-    ConfigComponent,
     PartyComponent,
-    MultichainComponent,
-    DecryptComponent,
     ListitemsComponent,
     ListstreamsComponent,
-    DashboardComponent,
     RepsComponent,
-    AddRepComponent
+    AddRepComponent,
+    PartyEditForm,
+    RepEditForm,
+    SettingComponent,
+    ThailandComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +120,6 @@ import { AddRepComponent } from './add-rep/add-rep.component';
     MatTreeModule,
     MatFormFieldModule,
     LayoutModule,
-    MDBBootstrapModule.forRoot()
   ],
   exports: [
     CdkTableModule,
@@ -170,6 +160,7 @@ import { AddRepComponent } from './add-rep/add-rep.component';
     MatTooltipModule,
     MatTreeModule,
   ],
+  entryComponents: [PartyEditForm, RepEditForm],
   providers: [DataService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]

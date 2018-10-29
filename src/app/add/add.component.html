@@ -1,5 +1,5 @@
-<div id="add-party">
-  <div class="container animated zoomIn">
+<div id="add-party" @fade>
+  <div class="container">
     <form class="example-form" [formGroup]="partyFormGroup" #f="ngForm" (ngSubmit)="onSubmit(f)">
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Party name</mat-label>
@@ -10,15 +10,15 @@
         <input matInput formControlName="areaCtrl" required>
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Image</mat-label>
+        <mat-label>Link to your party logo</mat-label>
         <input matInput formControlName="imageCtrl" required>
       </mat-form-field>
       <div id="add_button">
-          <button mat-button type="submit">Add</button>
+          <button mat-button color="primary" type="submit">Add</button>
       </div>
     </form>
   </div>
   <div class="container">
-    <app-party></app-party>
+    <app-party [input]="partyList"></app-party>
   </div>
 </div>
