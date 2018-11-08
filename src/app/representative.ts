@@ -2,12 +2,9 @@ export class Representative {
     constructor(
         public fname: string,
         public lname: string,
-        public age: number,
-        public number: number,
+        public dob: string,
         public party: string,
-        public area: string,
-        public province: string,
         public district: string,
-        public image: string
+        public url: string
     ) {}
 }

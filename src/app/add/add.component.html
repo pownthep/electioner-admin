@@ -1,22 +1,51 @@
 <div id="add-party" @fade>
   <div class="container">
-    <form class="example-form" [formGroup]="partyFormGroup" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Party name</mat-label>
-        <input matInput formControlName="nameCtrl" required>
-      </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Area</mat-label>
-        <input matInput formControlName="areaCtrl" required>
-      </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Link to your party logo</mat-label>
-        <input matInput formControlName="imageCtrl" required>
-      </mat-form-field>
-      <div id="add_button">
-          <button mat-button color="primary" type="submit">Add</button>
-      </div>
-    </form>
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
+            <ng-template matStepLabel>Party name</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="nameCtrl" placeholder="Party name" required>
+            </mat-form-field>
+            <div class="button">
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup" #f2="ngForm" (ngSubmit)="onSubmit2(f2)">
+            <ng-template matStepLabel>Party number</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="numberCtrl" placeholder="0" type="number" required>
+            </mat-form-field>
+            <div class="button">
+              <button mat-button color="primary" matStepperPrevious>Back</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup" #f3="ngForm" (ngSubmit)="onSubmit3(f3)">
+            <ng-template matStepLabel>Official logo</ng-template>
+            <mat-form-field class="example-full-width">
+              <mat-label>Logo</mat-label>
+              <input matInput formControlName="urlCtrl" placeholder="url" required>
+            </mat-form-field>
+            <div class="button">
+              <button mat-button color="primary" matStepperPrevious>Back</button>
+              <button mat-button color="primary" matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div class="button">
+            <button mat-button color="primary" matStepperPrevious>Back</button>
+            <button mat-button color="primary" (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
   </div>
   <div class="container">
     <app-party [input]="partyList"></app-party>

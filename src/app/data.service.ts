@@ -8,7 +8,7 @@ import { Representative } from './representative';
   providedIn: 'root'
 })
 export class DataService {
-  private baseUrl = "https://35.186.153.108";
+  private baseUrl = "http://35.197.142.51";
 
   constructor(private http: HttpClient) { }
   getReps() {

@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewChild, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-import {MatTableDataSource, ErrorStateMatcher, MatSnackBar} from '@angular/material';
+import { MatTableDataSource, ErrorStateMatcher, MatSnackBar } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Party } from '../party';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -21,8 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PartyComponent implements OnInit {
   public editData: any;
-  displayedColumns: string[] = ['name', 'code', '_id'];
-  
+  displayedColumns: string[] = ['url','name', 'code', '_id'];
   @Input('input') dataSource :any;
 
   applyFilter(filterValue: string) {
@@ -96,7 +95,7 @@ export class PartyComponent implements OnInit {
 })
 export class PartyEditForm implements OnInit {
   public saved = new EventEmitter<boolean>();
-  partyModel = new Party("","","");
+  partyModel = new Party("",-1,"");
 
   //Validation and error checking
   matcher = new MyErrorStateMatcher();
@@ -105,16 +104,16 @@ export class PartyEditForm implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public party: any, private _formBuilder: FormBuilder, private data: DataService) {}
   ngOnInit() {
     this.modalFormGroup = this._formBuilder.group({
-      pnameCtrl: ['', Validators.required],
-      areaCtrl: ['', Validators.required],
-      imageCtrl: ['', Validators.required]
+      nameCtrl: ['', Validators.required],
+      numberCtrl: ['', Validators.required],
+      urlCtrl: ['', Validators.required]
     });
   }
 
   onSave(f:any){
-    this.partyModel.party_name = f.value.pnameCtrl == '' ? this.party.name: f.value.pnameCtrl;
-    this.partyModel.code = f.value.areaCtrl == '' ? this.party.code: f.value.areaCtrl;
-    this.partyModel.image_url = f.value.imageCtrl == '' ? this.party.url: f.value.imageCtrl;
+    this.partyModel.name = f.value.nameCtrl == '' ? this.party.name: f.value.nameCtrl;
+    this.partyModel.number = f.value.numberCtrl == '' ? this.party.number: f.value.numberCtrl;
+    this.partyModel.url = f.value.urlCtrl == '' ? this.party.url: f.value.urlCtrl;
     this.data.updateParty(this.party._id,this.partyModel).subscribe(
       data => this.data.getParties().subscribe(
         data => this.saved.emit(true),

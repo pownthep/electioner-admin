@@ -7,8 +7,6 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { fade, slideInRight } from '../animations/animation';
-import { ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -35,7 +33,7 @@ export class RepsComponent implements OnInit {
   @Input('input') dataSource: MatTableDataSource<any>;;
 
   //Defining displayed columns
-  public displayedColumns: string[] = ['number', 'fname', 'lname', 'age', 'party', 'area', 'province', 'district', '_id'];
+  public displayedColumns: string[] = ['url','fname', 'lname', 'dob', 'party', 'district', '_id'];
   
   //Filtering function on representative table
   applyFilter(filterValue: string) {
@@ -107,7 +105,7 @@ export class RepEditForm implements OnInit {
   public saved = new EventEmitter<boolean>();
 
   //Representative model for storing form inputs
-  public repModel = new Representative("","",0, 0,"","","","","");
+  public repModel = new Representative("","","","","","");
   //public dataSource: any;
 
   //Validation and error checking
@@ -121,26 +119,20 @@ export class RepEditForm implements OnInit {
      this.firstFormGroup = this._formBuilder.group({
       fnameCtrl: ['', Validators.required],
       lnameCtrl: ['', Validators.required],
-      ageCtrl: ['', Validators.required],
-      numberCtrl: ['', Validators.required],
+      dobCtrl: ['', Validators.required],
       partyCtrl: ['', Validators.required],
-      areaCtrl: ['', Validators.required],
-      provinceCtrl: ['', Validators.required],
       districtCtrl: ['', Validators.required],
-      uploadCtrl: ['', Validators.required]
+      urlCtrl: ['', Validators.required]
     });
   }
 
   onSave(f:any){
     this.repModel.fname = f.value.fnameCtrl == '' ? this.rep.fname : f.value.fnameCtrl;
     this.repModel.lname = f.value.lnameCtrl == '' ? this.rep.lname : f.value.lnameCtrl;
-    this.repModel.lname = f.value.ageCtrl == '' ? this.rep.age : f.value.ageCtrl;
-    this.repModel.number = f.value.numberCtrl == '' ? this.rep.number : f.value.numberCtrl;
+    this.repModel.dob = f.value.dobCtrl == '' ? this.rep.dob : f.value.dobCtrl;
     this.repModel.party = f.value.partyCtrl == '' ? this.rep.party : f.value.partyCtrl;
-    this.repModel.area = f.value.areaCtrl == '' ? this.rep.area : f.value.areaCtrl;
-    this.repModel.province = f.value.provinceCtrl == '' ? this.rep.province : f.value.provinceCtrl;
     this.repModel.district = f.value.districtCtrl == '' ? this.rep.district : f.value.districtCtrl;
-    this.repModel.image = f.value.uploadCtrl == '' ? this.rep.image : f.value.uploadCtrl;
+    this.repModel.url = f.value.urlCtrl == '' ? this.rep.url : f.value.urlCtrl;
     this.data.updateRep(this.rep._id,this.repModel).subscribe(
       data => this.saved.emit(true),
       err => this.saved.emit(false)

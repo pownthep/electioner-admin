@@ -5,19 +5,27 @@
     grid-column-gap: 20px;
     .container{
         padding: 40px;
-        border-radius: 4px;
+        //border-radius: 4px;
     }
 }
 
-.example-form {
-    width: 100%;
+mat-horizontal-stepper{
+    background: none;
+    padding: 0px;
     height: 100vh;
-  }
-  
-.example-full-width {
-    width: 100%;
+    mat-form-field{
+        margin-left: 5px;
+    }
+    .button{
+        text-align: right;
+    }
 }
 
-#add_button{
-    text-align: right;
+table {
+    width: 100%;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
 }

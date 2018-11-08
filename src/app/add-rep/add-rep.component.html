@@ -1,48 +1,47 @@
 <div id="add-rep" @fade>
   <div class="container">
-    <mat-horizontal-stepper [linear]="true" #stepper>
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
+    <mat-horizontal-stepper [linear]="false" #stepper>
+      <mat-step [stepControl]="firstGroup">
+        <form [formGroup]="firstGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
           <ng-template matStepLabel>Fill out your name</ng-template>
-          <mat-form-field appearance="outline">
+          <mat-form-field>
             <mat-label>First name</mat-label>
             <input matInput placeholder="First name" formControlName="fnameCtrl" required>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Last name</mat-label>
+          <mat-form-field>
+            <mat-label>Last name</mat-label>
             <input matInput placeholder="Last name" formControlName="lnameCtrl" required>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-              <mat-label>Age</mat-label>
-            <input matInput placeholder="Age" type="number" formControlName="ageCtrl" required>
+          <mat-form-field>
+            <mat-label>D.O.B</mat-label>
+            <input matInput [matDatepicker]="dp3" placeholder="D.O.B" disabled formControlName="dobCtrl" required>
+            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
           </mat-form-field>
           <div class="button">
             <button mat-button color="primary" matStepperNext>Next</button>
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup" #f2="ngForm" (ngSubmit)="onSubmit2(f2)">
+      <mat-step [stepControl]="secondGroup">
+        <form [formGroup]="secondGroup" #f2="ngForm" (ngSubmit)="onSubmit2(f2)">
           <ng-template matStepLabel>Fill out your details</ng-template>
-          <mat-form-field appearance="outline">
-            <mat-label>Number</mat-label>
-            <input matInput placeholder="Number" formControlName="numberCtrl" type="number" required>
+          <mat-form-field>
+            <mat-select placeholder="Party" formControlName="partyCtrl" required>
+              <mat-option *ngFor="let party of partyList" [value]="party.name">
+                {{party.name}}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Party</mat-label>
-            <input matInput placeholder="Party" formControlName="partyCtrl" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Area</mat-label>
-            <input matInput placeholder="Area" formControlName="areaCtrl" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Province</mat-label>
-            <input matInput placeholder="Province" formControlName="provinceCtrl" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>District</mat-label>
-            <input matInput placeholder="District" formControlName="districtCtrl" required>
+
+          <mat-form-field>
+            <mat-select placeholder="District" formControlName="districtCtrl">
+              <mat-optgroup *ngFor="let province of provinces" [label]="province.Name">
+                <mat-option *ngFor="let district of province.District" [value]="province.Name+' District '+district">
+                  {{province.Name}} District {{district}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
           </mat-form-field>
           
           <div class="button">
@@ -51,12 +50,12 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup" #f3="ngForm" (ngSubmit)="onSubmit3(f3)">
-          <ng-template matStepLabel>Link to your profile photo</ng-template>
-          <mat-form-field appearance="outline">
-            <mat-label>Upload</mat-label>
-            <input matInput placeholder="Upload a file" formControlName="uploadCtrl" required>
+      <mat-step [stepControl]="thirdGroup">
+        <form [formGroup]="thirdGroup" #f3="ngForm" (ngSubmit)="onSubmit3(f3)">
+          <ng-template matStepLabel>Official photo</ng-template>
+          <mat-form-field>
+            <mat-label>URL</mat-label>
+            <input matInput placeholder="URL" formControlName="urlCtrl" required>
           </mat-form-field>
           <div class="button">
             <button mat-button color="primary" matStepperPrevious>Back</button>

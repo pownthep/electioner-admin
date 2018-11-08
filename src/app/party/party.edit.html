@@ -3,15 +3,15 @@
     <form [formGroup]="modalFormGroup" #edit="ngForm" (ngSubmit)="onSave(edit)" *ngIf="party">
         <mat-form-field appearance="fill">
             <mat-label>Party name</mat-label>
-            <input matInput formControlName="pnameCtrl"  value={{party?.name}} [errorStateMatcher]="matcher" required>
+            <input matInput formControlName="nameCtrl"  value={{party?.name}} [errorStateMatcher]="matcher" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Area</mat-label>
-            <input matInput formControlName="areaCtrl"  value={{party?.code}} [errorStateMatcher]="matcher" required>
+            <mat-label>Number</mat-label>
+            <input matInput formControlName="numberCtrl"  value={{party?.number}} [errorStateMatcher]="matcher" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Image link</mat-label>
-            <input matInput formControlName="imageCtrl" value={{party?.url}} [errorStateMatcher]="matcher" required>
+            <mat-label>Logo</mat-label>
+            <input matInput formControlName="urlCtrl" value={{party?.url}} [errorStateMatcher]="matcher" placeholder="url" required>
         </mat-form-field>
         <div align="end">
             <button mat-button [mat-dialog-close]>Cancel</button>
