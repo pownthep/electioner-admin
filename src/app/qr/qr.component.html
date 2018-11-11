@@ -12,7 +12,7 @@
     <h1>USER INFORMATION</h1>
     <form class="example-form" [formGroup]="formGroup" #f1="ngForm" (ngSubmit)="submit(f1, key.value)">
       <mat-form-field class="example-full-width">
-        <textarea style="height: 150px;" matInput placeholder="PUBLIC KEY" #key id="outputData" required></textarea>
+        <textarea matInput placeholder="PUBLIC KEY" #key id="outputData" required></textarea>
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="DISTRICT" required formControlName="districtCtrl">
