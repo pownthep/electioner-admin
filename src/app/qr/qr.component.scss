@@ -1,0 +1,38 @@
+#verify-user{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 50px;
+}
+h1 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+#loadingMessage {
+    text-align: center;
+    padding: 40px;
+}
+
+#canvas {
+    width: 500px;
+}
+
+#output {
+    margin-top: 20px;
+    //background: #eee;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#output div {
+    padding-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.example-form {
+    padding: 50px;
+}
+  
+.example-full-width {
+    width: 100%;
+}

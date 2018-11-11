@@ -8,7 +8,7 @@ import { Representative } from './representative';
   providedIn: 'root'
 })
 export class DataService {
-  private baseUrl = "http://35.197.142.51";
+  private baseUrl = "http://localhost";
 
   constructor(private http: HttpClient) { }
   getReps() {
@@ -61,6 +61,10 @@ export class DataService {
 
   updateParty(id: string, party: Party) {
     return this.http.post(this.baseUrl+'/api/party/edit/'+id, party); 
+  }
+
+  registerUser(user:any) {
+    return this.http.post(this.baseUrl+'/users/register', user); 
   }
 
 

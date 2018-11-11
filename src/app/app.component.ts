@@ -23,6 +23,16 @@ export class AppComponent {
       icon: "person_add"
     },
     {
+      path:"add-user",
+      label: "VERIFY USER",
+      icon: "verified_user"
+    },
+    {
+      path:"add-user",
+      label: "START",
+      icon: "radio_button_checked"
+    },
+    {
       path:"setting",
       label: "SETTINGS",
       icon: "settings"

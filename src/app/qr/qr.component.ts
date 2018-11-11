@@ -1,83 +1,121 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import jsQR from "jsqr";
 import { DataService } from '../data.service';
-import { NgForm, Validators } from '@angular/forms';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Representative } from '../representative';
-import { MatTableDataSource } from '@angular/material';
-import { fade } from '../animations/animation';
-
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
+let pubKey = "PUBLIC KEY";
+let stop = true;
 @Component({
-  selector: 'app-add-rep',
-  templateUrl: './add-rep.component.html',
-  styleUrls: ['./add-rep.component.scss'],
-  animations:[
-    fade
-  ]
+  selector: 'app-qr',
+  templateUrl: './qr.component.html',
+  styleUrls: ['./qr.component.scss']
 })
-export class AddRepComponent implements OnInit {
-  //Public variables
-  public repData;
-  public representativeList:MatTableDataSource<any>; //Passing representatives to RepsComponent
-  public partyList;
-
-  //Representative model
-  public repModel = new Representative("","","","","","");
-  constructor(private data: DataService,private _formBuilder: FormBuilder) { 
-    this.data.getReps().subscribe(
-      data => {
-        this.representativeList = new MatTableDataSource(data as {}[]);
-      }
-    );
-    
-    this.data.getParties().subscribe(
-      data => {
-        this.partyList = data;
-      }
-    );
+export class QrComponent implements OnInit, OnDestroy {
+  public key = pubKey;
+  public camera = stop ? "TURN ON":"TURN OFF";
+  formGroup: FormGroup;
+  constructor(private data: DataService, private _formBuilder: FormBuilder, public snackBar: MatSnackBar) {  
   }
-  
-  //Validation and error checking
-  firstGroup: FormGroup;
-  secondGroup: FormGroup;
-  thirdGroup: FormGroup;
 
-  
   ngOnInit() {
     //Validation and error checking
-    this.firstGroup = this._formBuilder.group({
-      fnameCtrl: ['', Validators.required],
-      lnameCtrl: ['', Validators.required],
-      dobCtrl: [{disabled: true}, Validators.required]
-    });
-    this.secondGroup = this._formBuilder.group({
-      partyCtrl: ['', Validators.required],
+    this.formGroup = this._formBuilder.group({
       districtCtrl: ['', Validators.required]
     });
-    this.thirdGroup = this._formBuilder.group({
-      urlCtrl: ['', Validators.required]
-    });
-    
-  }
-  onSubmit1(f: NgForm) {
-    this.repModel.fname = f.value.fnameCtrl;
-    this.repModel.lname = f.value.lnameCtrl;
-    this.repModel.dob = f.value.dobCtrl;
-  }
-  onSubmit2(f: NgForm) {
-    this.repModel.party = f.value.partyCtrl;
-    this.repModel.district = f.value.districtCtrl;
-    console.log(f.value.provinceCtrl);
-  }
-  onSubmit3(f: NgForm) {
-    this.repModel.url = f.value.urlCtrl;
-    this.data.registerRep(this.repModel).subscribe(
-      data => this.data.getReps().subscribe(
-        data => this.representativeList = new MatTableDataSource(data as {}[])
-      ),
-      error => console.log(error)
-    );
+    this.getQR();
   }
 
+  getQR() {
+    const video = document.createElement('video');
+    const canvasElement: any = document.getElementById('canvas');
+    const canvas = canvasElement.getContext('2d');
+    const loadingMessage = document.getElementById("loadingMessage");
+    const outputContainer = document.getElementById('output');
+    const outputData = document.getElementById('outputData');
+
+    function drawLine(begin, end, color) {
+      canvas.beginPath();
+      canvas.moveTo(begin.x, begin.y);
+      canvas.lineTo(end.x, end.y);
+      canvas.lineWidth = 4;
+      canvas.strokeStyle = color;
+      canvas.stroke();
+    }
+
+    // Use facingMode: environment to attemt to get the front camera on phones
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
+      video.srcObject = stream;
+      // video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
+      video.play();
+      requestAnimationFrame(tick);
+    });
+
+    function tick() {
+      if(stop == false) {
+        outputData.innerText = "";
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+          loadingMessage.hidden = true;
+          canvasElement.hidden = false;
+          outputContainer.hidden = false;
+  
+          canvasElement.height = video.videoHeight;
+          canvasElement.width = video.videoWidth;
+          canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+          const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+          const code = jsQR(imageData.data, imageData.width, imageData.height);
+          if (code) {
+            drawLine(code.location.topLeftCorner, code.location.topRightCorner, '#009688');
+            drawLine(code.location.topRightCorner, code.location.bottomRightCorner, '#009688');
+            drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, '#009688');
+            drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, '#009688');
+            outputData.parentElement.hidden = false;
+            outputData.innerText = code.data;
+            if(code.data.length > 0) {
+              stop = true;
+              pubKey = code.data;
+              video.pause();
+            }
+          } else {
+            outputData.parentElement.hidden = false;
+          }
+          video.play();
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+  }
+  ngOnDestroy() {
+    stop = true;
+  }
+
+  toggle() {
+    stop = !stop;
+    this.camera = stop ? "TURN ON":"TURN OFF";
+  }
+
+  submit(f: NgForm, key: string) {
+    stop = false;
+    this.camera = stop ? "TURN ON":"TURN OFF";
+    let user = {
+      key: key,
+      district: f.value.districtCtrl
+    }
+    this.data.registerUser(user).subscribe(
+      data => {
+        console.log("Sucessful"+"\n");
+        console.log(data);
+        this.snackBar.open("User is verified", "close", {
+          duration: 2000,
+        });
+      },
+      err => {
+        console.log("Error: "+"\n");
+        this.snackBar.open(err.error.text, "close");
+        console.log(err);
+      }
+    );
+    console.log(stop);
+  }
   public provinces = [
     {
       Name: "AngThong",
@@ -462,5 +500,6 @@ export class AddRepComponent implements OnInit {
   
     }
   ]
+  
 
 }

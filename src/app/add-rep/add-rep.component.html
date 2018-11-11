@@ -1,6 +1,6 @@
 <div id="add-rep" @fade>
   <div class="container">
-    <mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-horizontal-stepper [linear]="true" #stepper>
       <mat-step [stepControl]="firstGroup">
         <form [formGroup]="firstGroup" #f1="ngForm" (ngSubmit)="onSubmit1(f1)">
           <ng-template matStepLabel>Fill out your name</ng-template>
@@ -14,9 +14,9 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>D.O.B</mat-label>
-            <input matInput [matDatepicker]="dp3" placeholder="D.O.B" disabled formControlName="dobCtrl" required>
-            <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="dobCtrl">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <div class="button">
             <button mat-button color="primary" matStepperNext>Next</button>

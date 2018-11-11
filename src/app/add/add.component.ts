@@ -5,7 +5,6 @@ import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup, FormBui
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatTableDataSource } from '@angular/material';
 import { fade } from '../animations/animation';
-
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

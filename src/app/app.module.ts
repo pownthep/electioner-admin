@@ -57,6 +57,9 @@ import { AddRepComponent } from './add-rep/add-rep.component';
 import { SettingComponent } from './setting/setting.component';
 import { ThailandComponent } from './thailand/thailand.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import {WebcamModule} from 'ngx-webcam';
+import { QrComponent } from './qr/qr.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +73,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
     RepEditForm,
     SettingComponent,
     ThailandComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    QrComponent
   ],
   imports: [
     BrowserModule,
@@ -120,6 +124,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
     MatTreeModule,
     MatFormFieldModule,
     LayoutModule,
+    WebcamModule
   ],
   exports: [
     CdkTableModule,
