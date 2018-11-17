@@ -10,9 +10,6 @@ import { fade } from '../animations/animation';
   selector: 'app-add-rep',
   templateUrl: './add-rep.component.html',
   styleUrls: ['./add-rep.component.scss'],
-  animations:[
-    fade
-  ]
 })
 export class AddRepComponent implements OnInit {
   //Public variables

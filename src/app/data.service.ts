@@ -8,7 +8,7 @@ import { Representative } from './representative';
   providedIn: 'root'
 })
 export class DataService {
-  private baseUrl = "http://localhost";
+  private baseUrl = "https://electioner.tk";
 
   constructor(private http: HttpClient) { }
   getReps() {

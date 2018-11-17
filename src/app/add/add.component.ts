@@ -17,9 +17,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
-  animations:[
-    fade
-  ]
 })
 export class AddComponent implements OnInit {
   
