@@ -11,6 +11,23 @@ export class DataService {
   private baseUrl = "https://electioner.tk";
 
   constructor(private http: HttpClient) { }
+
+  stopElection(name: string) {
+    return this.http.post(this.baseUrl+'/api/election/stop', {name: name});
+  }
+
+  startElection(name: string) {
+    return this.http.post(this.baseUrl+'/api/election/start', {name: name});
+  }
+
+  createElection(election: any) {
+    return this.http.post(this.baseUrl+'/api/create/election', election);
+  }
+
+  getElections() {
+    return this.http.get(this.baseUrl+'/api/list/elections');
+  }
+
   getReps() {
     return this.http.get(this.baseUrl+'/api/rep');
   }

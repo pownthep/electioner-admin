@@ -1,6 +1,6 @@
 <div style="text-align: center;" id="verify-user">
   <div>
-    <h1>QR SCANNER</h1>
+    <h5>QR SCANNER</h5>
     <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
     <canvas id="canvas" hidden class="mat-elevation-z4"></canvas>
     <div id="output" hidden>
@@ -9,10 +9,10 @@
     <button mat-raised-button color="primary" (click)="toggle()">{{camera}}</button>   
   </div>
   <div>
-    <h1>USER INFORMATION</h1>
+    <h5>USER INFORMATION</h5>
     <form class="example-form" [formGroup]="formGroup" #f1="ngForm" (ngSubmit)="submit(f1, key.value)">
       <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="PUBLIC KEY" #key id="outputData" required></textarea>
+        <textarea matInput placeholder="PUBLIC KEY" #key id="outputData" required disabled></textarea>
       </mat-form-field>
       <mat-form-field>
         <mat-select placeholder="DISTRICT" required formControlName="districtCtrl">

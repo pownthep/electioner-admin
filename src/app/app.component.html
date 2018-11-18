@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" style="text-align:center;"><h1>Electioner System</h1></mat-toolbar>
+<mat-toolbar color="primary" style="text-align:center;"><h5>Electioner System Administrator</h5></mat-toolbar>
 
 <nav mat-tab-nav-bar>
   <a mat-tab-link
@@ -7,7 +7,7 @@
       routerLinkActive #rla="routerLinkActive"
       [active]="rla.isActive"
       [class.active]="rla.isActive">
-      <i class="material-icons">{{link.icon}}</i> {{link.label}}
+      <i class="material-icons">{{link.icon}}</i> <h5>{{link.label}}</h5>
   </a>
 </nav>
 <router-outlet></router-outlet>

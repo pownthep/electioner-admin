@@ -102,9 +102,7 @@ export class QrComponent implements OnInit, OnDestroy {
     }
     this.data.registerUser(user).subscribe(
       data => {
-        console.log("Sucessful"+"\n");
-        console.log(data);
-        this.snackBar.open("User is verified", "close", {
+        this.snackBar.open(data.toString(), "close", {
           duration: 2000,
         });
       },

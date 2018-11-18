@@ -28,11 +28,6 @@ export class AppComponent {
       icon: "verified_user"
     },
     {
-      path:"add-user",
-      label: "START",
-      icon: "radio_button_checked"
-    },
-    {
       path:"setting",
       label: "SETTINGS",
       icon: "settings"

@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class PartyComponent implements OnInit {
   public editData: any;
-  displayedColumns: string[] = ['url','name', 'code', '_id'];
+  displayedColumns: string[] = ['url','_id'];
   @Input('input') dataSource :any;
 
   applyFilter(filterValue: string) {
