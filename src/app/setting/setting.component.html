@@ -14,7 +14,7 @@
     <div>
         <h5>List of elections</h5>
         <mat-list *ngIf="electionList">
-            <mat-list-item *ngFor="let election of electionList.reverse()">
+            <mat-list-item *ngFor="let election of electionList">
                     <h5 style="width: 95%">{{election.name}}</h5>
                     <mat-slide-toggle (change)="onToggle(election.active, election.name)" [checked]="election.active"><h5>Off/On</h5></mat-slide-toggle>
                 <mat-divider></mat-divider>
