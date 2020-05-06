@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, Inject, ViewChild, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs';
-import { MatTableDataSource, ErrorStateMatcher, MatSnackBar } from '@angular/material';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroupDirective, NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Party } from '../party';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -96,17 +98,19 @@ export class PartyComponent implements OnInit {
 export class PartyEditForm implements OnInit {
   public saved = new EventEmitter<boolean>();
   partyModel = new Party("",-1,"");
-
+  public test = 'adawda';
   //Validation and error checking
   matcher = new MyErrorStateMatcher();
   modalFormGroup: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public party: any, private _formBuilder: FormBuilder, private data: DataService) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public party: any, private _formBuilder: FormBuilder, private data: DataService) {
+    
+  }
   ngOnInit() {
     this.modalFormGroup = this._formBuilder.group({
-      nameCtrl: ['', Validators.required],
-      numberCtrl: ['', Validators.required],
-      urlCtrl: ['', Validators.required]
+      nameCtrl: [ this.party.name, Validators.required],
+      numberCtrl: [this.party.number, Validators.required],
+      urlCtrl: [this.party.url, Validators.required]
     });
   }
 

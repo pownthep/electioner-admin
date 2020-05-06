@@ -3,7 +3,7 @@ import { DataService } from '../data.service';
 import { NgForm, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Representative } from '../representative';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { fade } from '../animations/animation';
 
 @Component({

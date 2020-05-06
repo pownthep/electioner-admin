@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import jsQR from "jsqr";
 import { DataService } from '../data.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 let pubKey = "PUBLIC KEY";
 let stop = true;
 @Component({
@@ -102,7 +102,7 @@ export class QrComponent implements OnInit, OnDestroy {
     }
     this.data.registerUser(user).subscribe(
       data => {
-        this.snackBar.open(data.toString(), "close", {
+        this.snackBar.open('User', "close", {
           duration: 2000,
         });
       },

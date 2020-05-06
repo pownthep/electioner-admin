@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-setting',
@@ -39,7 +39,7 @@ export class SettingComponent implements OnInit {
     console.log(tmp);
     this.data.createElection(tmp).subscribe(
       data => {
-        this.openSnackBar(data.toString(), "close");
+        this.openSnackBar(`${name} has created`, "close");
         this.data.getElections().subscribe(
           data => {
             this.electionList = data;
@@ -59,7 +59,7 @@ export class SettingComponent implements OnInit {
   onToggle(active: Boolean, name: string) {
     if(active) this.data.stopElection(name).subscribe(
       data => {
-        this.openSnackBar(data.toString(), "close");
+        this.openSnackBar(`${name} has been stopped`, "close");
         this.data.getElections().subscribe(
           data => {
             this.electionList = data;
@@ -76,7 +76,7 @@ export class SettingComponent implements OnInit {
     );
     else this.data.startElection(name).subscribe(
       data => {
-        this.openSnackBar(data.toString(), "close");
+        this.openSnackBar(`${name} has been started`, "close");
         this.data.getElections().subscribe(
           data => {
             this.electionList = data;

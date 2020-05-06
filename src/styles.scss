@@ -1,8 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Jost&display=swap');
+
+* {
+    font-family: 'Jost', sans-serif;
+}
+
 html, body {
-    font-family: 'Roboto', sans-serif;
     margin: 0px;
     height: 100%;
     #container{
@@ -26,12 +30,14 @@ mat-tab-header{
 #deleteIcon{
     &:hover{
         color: red;
+        cursor: pointer;
     }
     color: #FFCDD2;
 }
 #editIcon{
     &:hover{
         color:#009688;
+        cursor: pointer;
     }
     color: #E0F2F1;
     margin-right: 10px;
