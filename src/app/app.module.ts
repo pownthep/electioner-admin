@@ -56,7 +56,6 @@ import { RepsComponent, RepEditForm } from './reps/reps.component';
 import { AddRepComponent } from './add-rep/add-rep.component';
 import { SettingComponent } from './setting/setting.component';
 import { ThailandComponent } from './thailand/thailand.component';
-import { CreateUserComponent } from './create-user/create-user.component';
 import { QrComponent } from './qr/qr.component';
 
 @NgModule({
@@ -72,7 +71,6 @@ import { QrComponent } from './qr/qr.component';
     RepEditForm,
     SettingComponent,
     ThailandComponent,
-    CreateUserComponent,
     QrComponent
   ],
   imports: [
