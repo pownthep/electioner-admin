@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Inject } from '@angular/core';
 import { DataService } from '../data.service';
-import { MatTableDataSource, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
-import { MatSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Representative } from '../representative';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -117,12 +118,12 @@ export class RepEditForm implements OnInit {
 
      //Validation and error checking
      this.firstFormGroup = this._formBuilder.group({
-      fnameCtrl: ['', Validators.required],
-      lnameCtrl: ['', Validators.required],
-      dobCtrl: ['', Validators.required],
-      partyCtrl: ['', Validators.required],
-      districtCtrl: ['', Validators.required],
-      urlCtrl: ['', Validators.required]
+      fnameCtrl: [this.rep.fname, Validators.required],
+      lnameCtrl: [this.rep.lname, Validators.required],
+      dobCtrl: [this.rep.dob, Validators.required],
+      partyCtrl: [this.rep.party, Validators.required],
+      districtCtrl: [this.rep.district, Validators.required],
+      urlCtrl: [this.rep.url, Validators.required]
     });
   }
 
