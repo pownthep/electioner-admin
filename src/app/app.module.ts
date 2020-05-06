@@ -57,7 +57,6 @@ import { AddRepComponent } from './add-rep/add-rep.component';
 import { SettingComponent } from './setting/setting.component';
 import { ThailandComponent } from './thailand/thailand.component';
 import { CreateUserComponent } from './create-user/create-user.component';
-import {WebcamModule} from 'ngx-webcam';
 import { QrComponent } from './qr/qr.component';
 
 @NgModule({
@@ -124,7 +123,6 @@ import { QrComponent } from './qr/qr.component';
     MatTreeModule,
     MatFormFieldModule,
     LayoutModule,
-    WebcamModule
   ],
   exports: [
     CdkTableModule,
