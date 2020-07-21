@@ -1,29 +1,43 @@
 <div style="text-align: center;" id="verify-user">
-  <div>
-    <h5>QR SCANNER</h5>
-    <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
-    <canvas id="canvas" hidden class="mat-elevation-z4"></canvas>
-    <div id="output" hidden>
-      <div hidden><span></span></div>
-    </div> 
-    <button mat-raised-button color="primary" (click)="toggle()">{{camera}}</button>   
+  <div style="display: flex; justify-content: center;">
+    <div style="max-width: 300px;">
+      <h5>QR SCANNER</h5>
+      <zxing-scanner (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+    </div>
   </div>
   <div>
     <h5>USER INFORMATION</h5>
-    <form class="example-form" [formGroup]="formGroup" #f1="ngForm" (ngSubmit)="submit(f1, key.value)">
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="PUBLIC KEY" #key id="outputData" required disabled></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="DISTRICT" required formControlName="districtCtrl">
-          <mat-optgroup *ngFor="let province of provinces" [label]="province.Name">
-            <mat-option *ngFor="let district of province.District" [value]="province.Name+' District '+district">
-              {{province.Name}} District {{district}}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">REGISTER</button>
-    </form>
+    <mat-form-field class="example-full-width">
+      <textarea
+        [value]="scannerData"
+        matInput
+        placeholder="PUBLIC KEY"
+        #key
+        required
+        disabled
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Province</mat-label>
+      <mat-select [(value)]="selectedProvince">
+        <mat-option *ngFor="let province of provinces" [value]="province">
+          {{ province.Name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="selectedProvince">
+      <mat-label>District</mat-label>
+      <mat-select [(value)]="selectedDistrict">
+        <mat-option
+          *ngFor="let district of selectedProvince.District"
+          [value]="district"
+        >
+          {{ district }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="submit()">REGISTER</button>
   </div>
 </div>

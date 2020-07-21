@@ -54,6 +54,7 @@ import { AddRepComponent } from './add-rep/add-rep.component';
 import { SettingComponent } from './setting/setting.component';
 import { ThailandComponent } from './thailand/thailand.component';
 import { QrComponent } from './qr/qr.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
@@ -118,6 +119,7 @@ import { QrComponent } from './qr/qr.component';
     MatTreeModule,
     MatFormFieldModule,
     LayoutModule,
+    ZXingScannerModule
   ],
   exports: [
     CdkTableModule,

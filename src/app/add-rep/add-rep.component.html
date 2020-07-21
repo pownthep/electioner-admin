@@ -33,14 +33,21 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <mat-form-field>
+            <mat-label>Province</mat-label>
+            <mat-select formControlName="provinceCtrl" (selectionChange)="districts = $event.value.District">
+              <mat-option *ngFor="let province of provinces" [value]="province">
+                {{ province.Name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
           <mat-form-field>
-            <mat-select placeholder="District" formControlName="districtCtrl">
-              <mat-optgroup *ngFor="let province of provinces" [label]="province.Name">
-                <mat-option *ngFor="let district of province.District" [value]="province.Name+' District '+district">
-                  {{province.Name}} District {{district}}
-                </mat-option>
-              </mat-optgroup>
+            <mat-label>District</mat-label>
+            <mat-select formControlName="districtCtrl">
+              <mat-option *ngFor="let district of districts" [value]="district">
+                {{ district }}
+              </mat-option>
             </mat-select>
           </mat-form-field>
           
