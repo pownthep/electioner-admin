@@ -67,18 +67,17 @@ export class AddRepComponent implements OnInit {
     this.repModel.party = f.value.partyCtrl;
     this.repModel.district =
       f.value.provinceCtrl.Name + " District " + f.value.districtCtrl;
-    console.log(f.value.provinceCtrl);
   }
   onSubmit3(f: NgForm) {
     this.repModel.url = f.value.urlCtrl;
     this.data.registerRep(this.repModel).subscribe(
-      (data) =>
-        this.data
-          .getReps()
-          .subscribe(
-            (data) =>
-              (this.representativeList = new MatTableDataSource(data as {}[]))
-          ),
+      (data) => {
+        console.log(data);
+        localStorage["rep_data"] = JSON.stringify(
+          JSON.parse(localStorage["rep_data"]).concat(data)
+        );
+        this.representativeList = new MatTableDataSource(JSON.parse(localStorage["rep_data"]));
+      },
       (error) => console.log(error)
     );
   }
