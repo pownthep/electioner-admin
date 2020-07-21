@@ -1,13 +1,21 @@
-<mat-toolbar color="primary" style="text-align:center;"><h5>Electioner System Administrator</h5></mat-toolbar>
+<mat-toolbar color="primary" style="text-align: center; font-weight: bold;"
+  ><h3 style="font-weight: bold; font-family: 'Inter var', sans-serif;">
+    Electioner System Administrator
+  </h3></mat-toolbar
+>
 
 <nav mat-tab-nav-bar>
-  <a mat-tab-link
-      *ngFor="let link of navLinks"
-      [routerLink]="link.path"
-      routerLinkActive #rla="routerLinkActive"
-      [active]="rla.isActive"
-      [class.active]="rla.isActive">
-      <i class="material-icons">{{link.icon}}</i> <h5>{{link.label}}</h5>
+  <a
+    mat-tab-link
+    *ngFor="let link of navLinks"
+    [routerLink]="link.path"
+    routerLinkActive
+    #rla="routerLinkActive"
+    [active]="rla.isActive"
+    [class.active]="rla.isActive"
+  >
+    <i class="material-icons">{{ link.icon }}</i>
+    <h5>{{ link.label }}</h5>
   </a>
 </nav>
 <router-outlet></router-outlet>

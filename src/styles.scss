@@ -1,102 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
-@import url('https://rsms.me/inter/inter.css');
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import url("https://rsms.me/inter/inter.css");
 
 * {
-    font-family: 'Inter var', sans-serif;
+  font-family: "Inter var", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
-    margin: 0px;
-    height: 100%;
-    #container{
-        min-height: 100%;
-        #main{
-        }
+html,
+body {
+  margin: 0px;
+  height: 100%;
+  #container {
+    min-height: 100%;
+    #main {
     }
+  }
 }
 
-mat-tab-body{
-    padding: 20px;
-    height: 100vh;
-    overflow: auto;
+mat-tab-body {
+  padding: 20px;
+  height: 100vh;
+  overflow: auto;
 }
-mat-tab-header{
-    color: white;
-    //background: rgba(3, 169, 244, 0.1) ;
-    border:none;
+mat-tab-header {
+  color: white;
+  //background: rgba(3, 169, 244, 0.1) ;
+  border: none;
 }
 
-#deleteIcon{
-    &:hover{
-        color: red;
-        cursor: pointer;
-    }
-    color: #FFCDD2;
-}
-#editIcon{
-    &:hover{
-        color:#009688;
-        cursor: pointer;
-    }
-    color: #E0F2F1;
-    margin-right: 10px;
-}
-  
-.mat-form-field {
-    font-size: 14px;
-    width: 100%;
-}
-.delete{
+#deleteIcon {
+  &:hover {
     color: red;
+    cursor: pointer;
+  }
+  color: #ffcdd2;
 }
-.edit{
-    color: #3F51B5;
+#editIcon {
+  &:hover {
+    color: #009688;
+    cursor: pointer;
+  }
+  color: #e0f2f1;
+  margin-right: 10px;
 }
-.hidden{
-    display: none;
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.delete {
+  color: red;
+}
+.edit {
+  color: #3f51b5;
+}
+.hidden {
+  display: none;
 }
 
 .modal-notify .modal-header {
-    border-radius: 3px 3px 0 0;
+  border-radius: 3px 3px 0 0;
 }
 .modal-notify .modal-content {
-    border-radius: 3px;
+  border-radius: 3px;
 }
 
-.modal-dialog.modal-notify.modal-warning .modal-header{
-    background: #3F51B5;
+.modal-dialog.modal-notify.modal-warning .modal-header {
+  background: #3f51b5;
 }
 .btn-outline-warning {
-    border: 2px solid #3F51B5 !important;
-    background-color: transparent !important;
-    color: #000000 !important;
+  border: 2px solid #3f51b5 !important;
+  background-color: transparent !important;
+  color: #000000 !important;
 }
-table.mat-table{
-    border-radius: 5px;
+table.mat-table {
+  border-radius: 5px;
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 3px;
-	background-color: transparent;
+  width: 0px;
+  background-color: transparent;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	border-radius: 10px;
-	background-color: transparent;
+  //-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  background-color: transparent;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: rgb(68, 67, 67);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgb(182, 182, 182);
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-
 }
