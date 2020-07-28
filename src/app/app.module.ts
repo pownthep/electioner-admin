@@ -52,7 +52,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { RepsComponent, RepEditForm } from './reps/reps.component';
 import { AddRepComponent } from './add-rep/add-rep.component';
 import { SettingComponent } from './setting/setting.component';
-import { ThailandComponent } from './thailand/thailand.component';
 import { QrComponent } from './qr/qr.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
@@ -68,7 +67,6 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     PartyEditForm,
     RepEditForm,
     SettingComponent,
-    ThailandComponent,
     QrComponent
   ],
   imports: [
